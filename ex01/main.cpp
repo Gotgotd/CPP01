@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 14:55:42 by gautier           #+#    #+#             */
-/*   Updated: 2024/08/16 11:57:52 by gdaignea         ###   ########.fr       */
+/*   Created: 2024/08/15 17:02:52 by gautier           #+#    #+#             */
+/*   Updated: 2024/08/16 11:45:54 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) : _name(name) {
+int	main(void) {
 
-	announce();
-}
-Zombie::~Zombie(void) {
+	Zombie*	horde = zombieHorde(5, "Jean-Michel");
+
+	delete [] horde;
 	
-	std::cout << this->_name << " is dead and gone" << std::endl;
+	return 0;
 }
-
-void Zombie::announce() {
-
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
