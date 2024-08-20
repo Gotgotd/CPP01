@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:54:34 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/08/17 17:58:30 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:23:20 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	HumanB::attack() const {
 
 }
 
-void	HumanB::setWeapon(Weapon &newWeapon) {
+void	HumanB::setWeapon(Weapon& newWeapon) {
 
 	this->weapon = &newWeapon;
 }
