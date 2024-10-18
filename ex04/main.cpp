@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:53:09 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/08/20 15:15:06 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:06:29 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,30 @@
 #include <iostream>
 #include <fstream>
 
-void	replace_line(std::string& oldStr, std::string& newStr, std::string& line) {
+bool	is_empty(std::ifstream& file) {
+
+	file.seekg(0, std::ios::end);
+	if (file.tellg() == 0) 
+		return true;
+	else {
+		file.seekg(std::ios::beg);
+		return false;
+	}
+}
+
+
+void	replace_line(std::string& oldStr, std::string& newStr, std::string& line, int& count) {
 
 	size_t	pos = 0;
 
 	pos = line.find(oldStr);
 	while (pos != std::string::npos) {
-		if (pos == std::string::npos) {
-			std::cout << "string '" << oldStr << "' couldn't be found in the file" << std::endl;
-			return;
-		}
-		else {
-			line.erase(pos, oldStr.length());
-			line.insert(pos, newStr);
-		}
+		line.erase(pos, oldStr.length());
+		line.insert(pos, newStr);
+		count++;
 		pos = line.find(oldStr);
 	}
+	return ;
 }
 
 int	main(int ac, const char **av) {
@@ -47,20 +55,28 @@ int	main(int ac, const char **av) {
 	std::string		newFile = file + ".replace";
 	std::string		oldStr = av[2];
 	std::string		newStr = av[3];
+	int				count = 0;
 
 
 	std::ifstream	test(av[1]);
-	std::ofstream	testCpy(newFile.c_str());
 
 	if (!test.is_open()) {
-		std::cerr << "file " << av[1] << "could not be open" << std::endl;
+		std::cerr << "Error. File " << av[1] << " could not be open" << std::endl;
+		return 1;
+	}
+	if (is_empty(test)) {
+		std::cout << "Error. File is empty" << std::endl;
 		return 1;
 	}
 
+	std::ofstream	testCpy(newFile.c_str());
+
 	while (std::getline(test, line)) {
-		replace_line(oldStr, newStr, line);
+		replace_line(oldStr, newStr, line, count);
 		testCpy << line << std::endl;
 	}
+	if (count == 0)
+		std::cout << "string '" << oldStr << "' couldn't be found in the file" << std::endl;
 	test.close();
 	testCpy.close();
 	return 0;

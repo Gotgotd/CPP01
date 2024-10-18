@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:28:33 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/08/21 15:37:00 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:48:44 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(void) {
 	std::string*	stringPTR = &string;
 	std::string&	stringREF = string;
 
-	std::cout << stringPTR << " " << stringPTR << " " << &stringREF << std::endl;
+	std::cout << stringPTR << " " << &stringPTR << " " << &stringREF << std::endl;
 	std::cout << string << " " << *stringPTR << " " << stringREF << std::endl; 
 } 
